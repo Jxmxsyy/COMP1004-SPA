@@ -6,11 +6,12 @@
     <title> Single Page Application - James' Diner</title>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link href="css/site.css" rel="stylesheet" />
+    <link href="css/index.css" rel="stylesheet" />
     <script src="https://kit.fontawesome.com/0721c1e8fd.js" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-    <script src="~/js/ckeditor5/build/ckeditor.js"></script>
+    <script src="../js/ckeditor5/build/ckeditor.js"></script>
     <script src="https://cdn.ckeditor.com/ckeditor5/24.0.0/classic/ckeditor.js"></script>
+    <script src="https://code.jquery.com/jquery-2.1.1.js"></script>    
 </head>
 <body>
     <div class="container">
@@ -22,28 +23,33 @@
                 <nav class="secondary_header">
                     <ul>
                         <li>
-                            <a class="nav-link" href="#AboutSection" style="text-decoration:none;">
+                            <a class="nav-link" href="#AboutSection" style="text-decoration: none; color: #000000;">
                                 About
                             </a>
                         </li>
                         <li>
-                            <a class="nav-link" href="#ReservationSection" style="text-decoration:none;">
+                            <a class="nav-link" href="#ReservationSection" style="text-decoration: none; color: #000000;">
                                 Reservations
                             </a>
                         </li>
                         <li>
-                            <a class="nav-link" href="#MenusSection" style="text-decoration:none;">
+                            <a class="nav-link" href="#MenusSection" style="text-decoration: none;color: #000000;">
                                 Menus
                             </a>
                         </li>
                         <li>
-                            <a class="nav-link" href="#FindUsSection" style="text-decoration:none;">
+                            <a class="nav-link" href="#FindUsSection" style="text-decoration: none; color: #000000;">
                                 Find Us
                             </a>
                         </li>
                         <li>
-                            <a class="nav-link" href="#COVIDSection" style="text-decoration:none;">
+                            <a class="nav-link" href="#COVIDSection" style="text-decoration: none; color: #000000;">
                                 COVID-19 Updates
+                            </a>
+                        </li>
+                        <li>
+                            <a class="nav-link" href="admin.html" style="text-decoration: none; color: #000000;">
+                                Staff Login
                             </a>
                         </li>
                     </ul>
@@ -242,7 +248,7 @@
                             <p><input type="text" placeholder="Username..." required oninput="this.className = ''" /></p>
                             <p><input type="password" placeholder="Password..." required oninput="this.className = ''" /></p>
                         </div>
-                        <button class="login-btn">Login</button>
+                       <button id="login" class="login-btn">Login</button>
                     </form>
                 </div>
                 <br />
@@ -294,7 +300,6 @@
                 }
             });
         });
-    </script>
-
+    </script>    
 </body>
 </html>

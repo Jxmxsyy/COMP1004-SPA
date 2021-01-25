@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Darre\\source\\repos\\COMP1004\\COMP1004.csproj": {}
+    "C:\\Users\\Darre\\OneDrive\\Documents\\GitHub\\COMP1001\\COMP1001-master\\COMP1004-SPA\\COMP1004\\COMP1004.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Darre\\source\\repos\\COMP1004\\COMP1004.csproj": {
+    "C:\\Users\\Darre\\OneDrive\\Documents\\GitHub\\COMP1001\\COMP1001-master\\COMP1004-SPA\\COMP1004\\COMP1004.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Darre\\source\\repos\\COMP1004\\COMP1004.csproj",
+        "projectUniqueName": "C:\\Users\\Darre\\OneDrive\\Documents\\GitHub\\COMP1001\\COMP1001-master\\COMP1004-SPA\\COMP1004\\COMP1004.csproj",
         "projectName": "COMP1004",
-        "projectPath": "C:\\Users\\Darre\\source\\repos\\COMP1004\\COMP1004.csproj",
+        "projectPath": "C:\\Users\\Darre\\OneDrive\\Documents\\GitHub\\COMP1001\\COMP1001-master\\COMP1004-SPA\\COMP1004\\COMP1004.csproj",
         "packagesPath": "C:\\Users\\Darre\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Darre\\source\\repos\\COMP1004\\obj\\",
+        "outputPath": "C:\\Users\\Darre\\OneDrive\\Documents\\GitHub\\COMP1001\\COMP1001-master\\COMP1004-SPA\\COMP1004\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Microsoft\\Xamarin\\NuGet\\"
