@@ -1,270 +1,277 @@
 ﻿<!DOCTYPE html>
 <html lang="en-gb">
 <head>
+    <script src="https://www.gstatic.com/firebasejs/8.4.3/firebase-app.js"></script>   
+    <script src="https://www.gstatic.com/firebasejs/8.4.3/firebase-firestore.js"></script>
+    <script src="js/firebaseFunctions.js"></script>
     <meta charset="UTF-8">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title> Single Page Application - James' Diner</title>
-
+    <link id="pagestyle" type="text/css" href="css/index.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link href="css/index.css" rel="stylesheet" />
     <script src="https://kit.fontawesome.com/0721c1e8fd.js" crossorigin="anonymous"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-    <script src="../js/ckeditor5/build/ckeditor.js"></script>
-    <script src="https://cdn.ckeditor.com/ckeditor5/24.0.0/classic/ckeditor.js"></script>
-    <script src="https://code.jquery.com/jquery-2.1.1.js"></script>    
+    <script src="https://code.jquery.com/jquery-2.1.1.js"></script>
+    <script src="js/index.js"></script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>    
+    <script defer
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDk7FCZTbiHR-B3dMjmby50kn5Zqq4MYEA&libraries=places&callback=initMap">
+    </script>  
+    
 </head>
-<body>
-    <div class="container">
-        <header>
-            <div class="primary_header">
-                <h1 class="title">James Diner</h1>
-            </div>
-            <div id="secondheader">
-                <nav class="secondary_header">
-                    <ul>
-                        <li>
-                            <a class="nav-link" href="#AboutSection" style="text-decoration: none; color: #000000;">
-                                About
-                            </a>
-                        </li>
-                        <li>
-                            <a class="nav-link" href="#ReservationSection" style="text-decoration: none; color: #000000;">
-                                Reservations
-                            </a>
-                        </li>
-                        <li>
-                            <a class="nav-link" href="#MenusSection" style="text-decoration: none;color: #000000;">
-                                Menus
-                            </a>
-                        </li>
-                        <li>
-                            <a class="nav-link" href="#FindUsSection" style="text-decoration: none; color: #000000;">
-                                Find Us
-                            </a>
-                        </li>
-                        <li>
-                            <a class="nav-link" href="#COVIDSection" style="text-decoration: none; color: #000000;">
-                                COVID-19 Updates
-                            </a>
-                        </li>
-                        <li>
-                            <a class="nav-link" href="admin.html" style="text-decoration: none; color: #000000;">
-                                Staff Login
-                            </a>
-                        </li>
-                    </ul>
-                </nav>
-            </div>
-        </header>
-        <section>
-            <div id="scroll_container">
-                <div class="slides fade">
-                    <img src="img/restaurant.png" style="width: 100%; max-height: 900px;" />
-                    <div class="number_text"> 1 / 3</div>
-                    <div class="image_text"> Restaurant Layout</div>
+<body class="body" onload="loadDates();">
+    <div id="page_wrapper">
+        <div class="container">
+            <header>
+                <div class="primary_header">
+                    <h1 class="title">James' Diner</h1>
                 </div>
-                <div class="slides fade">
-                    <img src="img/spagbol.jpg" style="width: 100%; max-height: 820px;" />
-                    <div class="number_text"> 2 / 3</div>
-                    <div class="image_text"> Spaghetti Meatballs</div>
+                <div id="secondheader">
+                    <nav class="secondary_header">
+                        <ul>
+                            <li>
+                                <a class="nav-link" href="#AboutSection" style="text-decoration: none; color: #000000;">
+                                    About
+                                </a>
+                            </li>
+                            <li>
+                                <a class="nav-link" href="#ReservationSection" style="text-decoration: none; color: #000000;">
+                                    Reservations
+                                </a>
+                            </li>
+                            <li>
+                                <a class="nav-link" href="#MenusSection" style="text-decoration: none;color: #000000;">
+                                    Menus
+                                </a>
+                            </li>
+                            <li>
+                                <a class="nav-link" href="#FindUsSection" style="text-decoration: none; color: #000000;">
+                                    Find Us
+                                </a>
+                            </li>
+                            <li>
+                                <a class="nav-link" href="#COVIDSection" style="text-decoration: none; color: #000000;">
+                                    COVID-19 Updates
+                                </a>
+                            </li>
+                            <li>
+                                <a class="nav-link" href="#" id="admin" style="text-decoration: none; color: #000000;">
+                                    Staff Login
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
                 </div>
-                <div class="slides fade">
-                    <img src="img/pizza.png" style="width: 100%; max-height: 820px;" />
-                    <div class="number_text"> 3 / 3</div>
-                    <div class="image_text"> Margherita Pizza</div>
+            </header>
+            <section>
+                <div id="scroll_container">
+                    <div class="slides fade">
+                        <img src="img/restaurant.png" style="width: 100%; max-height: 900px;" />
+                        <div class="number_text"> 1 / 3</div>
+                        <div class="image_text"> Restaurant Layout</div>
+                    </div>
+                    <div class="slides fade">
+                        <img src="img/spagbol.jpg" style="width: 100%; max-height: 820px;" />
+                        <div class="number_text"> 2 / 3</div>
+                        <div class="image_text"> Spaghetti Meatballs</div>
+                    </div>
+                    <div class="slides fade">
+                        <img src="img/pizza.png" style="width: 100%; max-height: 820px;" />
+                        <div class="number_text"> 3 / 3</div>
+                        <div class="image_text"> Margherita Pizza</div>
+                    </div>
                 </div>
-            </div>
+                <br />
+            </section>
             <br />
-        </section>
-        <br />
-        <br />
-        <section id="AboutSection">
-            <div class="mini_header">
-                <h1 class="title">
-                    About James' Diner
-                </h1>
-            </div>
-            <article>
-                <p class="about_text">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                    Ut enim ad minim veniam,quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
-                    dolor in reprehenderit in voluptate velit esse cillum dolore fugiat nulla pariatur.
-                </p>
-                <table class="hours">
-                    <thead>
-                        <tr>
-                            <th>Day</th>
-                            <th>Opening Time</th>
-                            <th>Closing Time</th>
+            <br />
+            <section id="AboutSection">
+                <div class="mini_header">
+                    <h1 class="title">
+                        About James' Diner
+                    </h1>
+                </div>
+                <article>
+                    <p class="about_text">
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                        Ut enim ad minim veniam,quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
+                        dolor in reprehenderit in voluptate velit esse cillum dolore fugiat nulla pariatur.
+                    </p>
+                    <table id="hoursTable" class="hours">
+                        <thead>
+                            <tr>
+                                <th>Day</th>
+                                <th>Opening Time</th>
+                                <th>Closing Time</th>
+                            </tr>
+                        </thead>
+                        <tr id="monday">
+                            <th>Monday</th>
+                            <th id="monOpen"></th>
+                            <th id="monClose"></th>
                         </tr>
-                    </thead>
-                    <tr>
-                        <th>Monday</th>
-                        <th>9:00AM</th>
-                        <th>8:00PM</th>
-                    </tr>
-                    <tr>
-                        <th>Tuesday</th>
-                        <th>9:00AM</th>
-                        <th>8:00PM</th>
-                    </tr>
-                    <tr>
-                        <th>Wednesday</th>
-                        <th>9:00AM</th>
-                        <th>8:00PM</th>
-                    </tr>
-                    <tr>
-                        <th>Thursday</th>
-                        <th>9:00AM</th>
-                        <th>8:00PM</th>
-                    </tr>
-                    <tr>
-                        <th>Friday</th>
-                        <th>9:00AM</th>
-                        <th>11:00PM</th>
-                    </tr>
-                    <tr>
-                        <th>Saturday</th>
-                        <th>9:00AM</th>
-                        <th>11:00PM</th>
-                    </tr>
-                    <tr>
-                        <th>Sunday</th>
-                        <th>9:00AM</th>
-                        <th>11:00PM</th>
-                    </tr>
-                </table>
-            </article>
-        </section>
-        <br />
-        <br />
-        <br />
-        <br />
-        <section id="ReservationSection">
-            <div class="mini_header">
-                <h1 class="title">
-                    Reservations
-                </h1>
-            </div>
-            <form id="reservation" action="">
-                <h1> Reservation:</h1>
-
-                <div class="tab">
-                    Name:
-                    <p><input type="text" placeholder="First name..." required oninput="this.className = ''"></p>
-                    <span class="error" aria-live="polite"></span>
-                    <p><input type="text" placeholder="Last name..." required oninput="this.className = ''"></p>
-                    <span class="error" aria-live="polite"></span>
+                        <tr id="tuesday">
+                            <th>Tuesday</th>
+                            <th id="tueOpen"></th>
+                            <th id="tueClose"></th>
+                        </tr>
+                        <tr id="wednesday">
+                            <th>Wednesday</th>
+                            <th id="wedOpen"></th>
+                            <th id="wedClose"></th>
+                        </tr>
+                        <tr id="thursday">
+                            <th>Thursday</th>
+                            <th id="thurOpen"></th>
+                            <th id="thurClose"></th>
+                        </tr>
+                        <tr id="friday">
+                            <th>Friday</th>
+                            <th id="friOpen"></th>
+                            <th id="friClose"></th>
+                        </tr>
+                        <tr id="saturday">
+                            <th>Saturday</th>
+                            <th id="satOpen"></th>
+                            <th id="satClose"></th>
+                        </tr>
+                        <tr id="sunday">
+                            <th>Sunday</th>
+                            <th id="sunOpen"></th>
+                            <th id="sunClose"></th>
+                        </tr>
+                    </table>
+                </article>
+            </section>
+            <br />
+            <br />
+            <br />
+            <br />
+            <section id="ReservationSection">
+                <div class="mini_header">
+                    <h1 class="title">
+                        Reservations
+                    </h1>
                 </div>
+                <form id="reservation" action="">
+                    <h1> Reservation:</h1>
 
-                <div class="tab">
-                    Contact Info:
-                    <p><input inputmode="email" placeholder="E-mail..." required oninput="this.className = ''"></p>
-                    <span class="error" aria-live="polite"></span>
-                    <p><input inputmode="tel" placeholder="Phone..." required oninput="this.className = ''"></p>
-                    <span class="error" aria-live="polite"></span>
-                </div>
+                    <div class="tab">
+                        Name:
+                        <p><input id="firstNameInput" type="text" placeholder="First name..." required ></p>
+                        <span class="error" aria-live="polite"></span>
+                        <p><input id="lastNameInput" type="text" placeholder="Last name..." required ></p>
+                        <span class="error" aria-live="polite"></span>
+                    </div>
 
-                <div class="tab">
-                    Booking Details:
-                    <p><input type="number" placeholder="Party Size..." required min="1" max="4" oninput="this.className = ''" /></p>
-                    <span class="error" aria-live="polite"></span>
-                    <p><input type="time" min="09:00" max="22:00" placeholder="Booking Time..." required oninput="this.className = ''" /></p>
-                    <span class="error" aria-live="polite"></span>
-                    <p><input type="date" placeholder="Booking Date..." required oninput="this.className = ''" /></p>
-                    <span class="error" aria-live="polite"></span>
-                </div>
+                    <div class="tab">
+                        Contact Info:
+                        <p><input id="emailInput" inputmode="email" placeholder="E-mail..." required ></p>
+                        <span class="error" aria-live="polite"></span>
+                        <p><input id="phoneNumInput" inputmode="tel" placeholder="Phone..." required ></p>
+                        <span class="error" aria-live="polite"></span>
+                    </div>
 
-                <button class="login-btn" id="submit" type="submit" value="submit" required style="text-align:center"> Submit</button>
-            </form>
-        </section>
-        <br />
-        <br />
-        <br />
-        <br />
-        <section id="MenusSection">
-            <div class="mini_header">
-                <h1 class="title">
-                    Menus
-                </h1>
-            </div>
-            <br />
-            <br />
-            <h2 class="mainMenu">
-                <a class="menus" style="color: #6b7050; text-decoration: none;" href="~/Menus/MainMenu.pdf" download="MainMenu.pdf"> Main Menu</a>
-            </h2>
-            <br />
-            <h2 class="dessertMenu">
-                <a class="menus" style="color: #6b7050; text-decoration: none;" href="~/Menus/DessertsMenu.pdf" download="DessertsMenu.pdf"> Desserts Menu</a>
-            </h2>
-            <br />
-            <h2 class="kidsMenu">
-                <a class="menus" style="color:#6b7050; text-decoration: none; " href="~/Menus/KidsMenu.pdf" download="KidsMenu.pdf"> Kids Menu</a>
-            </h2>
-            <br />
-            <h2 class="xmasMenu">
-                <a class="menus" style="color: #6b7050;text-decoration: none;" href="~/Menus/XmasMenu.pdf" download="ChristmasMenu.pdf"> Christmas Menu</a>
-            </h2>
-        </section>
-        <br />
-        <br />
-        <br />
-        <br />
-        <section id="FindUsSection">
-            <div class="mini_header">
-                <h1 class="title">
-                    Find Us
-                </h1>
-            </div>
-            <br />
-            <br />
-            <article class="left_article">
-                <div id="mapLocation" align="center">
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1069.8697127827081!2d-4.135453338641394!3d50.37413670870045!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x486cecb460d34beb%3A0x6d26d1cb24e4eac7!2sRadnor%20Halls%20of%20Residence!5e0!3m2!1sen!2suk!4v1608388877493!5m2!1sen!2suk"
-                            id="mapLocation" width="500" height="350" frameborder="0" style="border:5px;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
-                </div>
-            </article>
-            <article class="right_article">
-                <p class="about_text">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                    Ut enim ad minim veniam,quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
-                    dolor in reprehenderit in voluptate velit esse cillum dolore fugiat nulla pariatur.
-                </p>
-            </article>
+                    <div class="tab">
+                        Booking Details:
+                        <p><input id="partySizeInput" type="number" placeholder="Party Size..." required min="1" max="6" /></p>
+                        <span class="error" aria-live="polite"></span>
+                        <p><input id="timeInput" type="time" min="09:00" max="22:00" placeholder="Booking Time..." required /></p>
+                        <span class="error" aria-live="polite"></span>
+                        <p><input id="dateInput" type="date" placeholder="Booking Date..." required/></p>
+                        <span class="error" aria-live="polite"></span>
+                    </div>
 
-        </section>
-        <br />
-        <br />
-        <br />
-        <br />
-
-        <section id="COVIDInfo">
-        </section>
-        <section id="socialBar">
-            <nav class="secondary_header">
-                <div class="login_div" style="text-align:center;">
-                    <form>
-                        <div class="tab" style="width:50%; margin-left:auto; margin-right:auto;">
-                            <p><input type="text" placeholder="Username..." required oninput="this.className = ''" /></p>
-                            <p><input type="password" placeholder="Password..." required oninput="this.className = ''" /></p>
-                        </div>
-                       <button id="login" class="login-btn">Login</button>
-                    </form>
+                    <button href="#" onclick="handleBooking()" class="login-btn" id="submit" style="text-align:center"> Submit</button>
+                </form>
+            </section>
+            <br />
+            <br />
+            <br />
+            <br />
+            <section id="MenusSection">
+                <div class="mini_header">
+                    <h1 class="title">
+                        Menus
+                    </h1>
                 </div>
                 <br />
                 <br />
-                <div class="icon_container" style="font-size:2em; text-align:center;">
-                    <a href="https://www.youtube.com/channel/UC8iN372lUS_vzyuOuUa9CGQ" rel="noopener noreferrer" target="_blank"><i class="fab fa-youtube-square fa-lg fa-fw" style="color:#FF0000;"></i></a>
-                    <a href="https://twitter.com/JR_Coding" rel="noopener noreferrer" target="_blank"><i class="fab fa-twitter-square fa-lg fa-fw" style="color:#1DA1F2;"></i></a>
-                    <a href="https://www.facebook.com/plymouthuni" rel="noopener noreferrer" target="_blank"><i class="fab fa-facebook-square fa-lg fa-fw" style="color: #3b5998"></i></a>
-                    <a href="mailto:jamesrudd@gmail.com"><i class="fas fa-envelope-square fa-lg fa-fw" style="color: darkslategrey"></i></a>
+                <h2 class="mainMenu">
+                    <a class="menus" style="color: #6b7050; text-decoration: none;" href="Menus/MainMenu.pdf" download="MainMenu.pdf"> Main Menu</a>
+                </h2>
+                <br />
+                <h2 class="dessertMenu">
+                    <a class="menus" style="color: #6b7050; text-decoration: none;" href="Menus/DessertsMenu.pdf" download="DessertsMenu.pdf"> Desserts Menu</a>
+                </h2>
+                <br />
+                <h2 class="kidsMenu">
+                    <a class="menus" style="color:#6b7050; text-decoration: none; " href="Menus/KidsMenu.pdf" download="KidsMenu.pdf"> Kids Menu</a>
+                </h2>
+                <br />
+                <h2 class="xmasMenu">
+                    <a class="menus" style="color: #6b7050;text-decoration: none;" href="Menus/XmasMenu.pdf" download="ChristmasMenu.pdf"> Christmas Menu</a>
+                </h2>
+            </section>
+            <br />
+            <br />
+            <br />
+            <br />
+            <section id="FindUsSection">
+                <div class="mini_header">
+                    <h1 class="title">
+                        Find Us
+                    </h1>
                 </div>
                 <br />
-                <div class="copyright_container" style="text-align:center;">
-                    <p style="font-size: 20px;"> &copy; Designed by James Rudd - &trade; 2021. All rights reserved. </p>
+                <br />
+                <article class="left_article">
+                    <div id="mapLocation" align="center">
+                        <!--<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1069.8697127827081!2d-4.135453338641394!3d50.37413670870045!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x486cecb460d34beb%3A0x6d26d1cb24e4eac7!2sRadnor%20Halls%20of%20Residence!5e0!3m2!1sen!2suk!4v1608388877493!5m2!1sen!2suk
+                        id="mapLocation" width="500" height="350" frameborder="0" style="border:5px;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>"-->
+                    </div>
+                    <div id="map" style="width:500px; height:350px; margin:auto;" tabindex="0" ; aria-hidden="false">
+
+                    </div>
+                </article>
+                <article class="right_article">
+                    <p class="about_text">
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                        Ut enim ad minim veniam,quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
+                        dolor in reprehenderit in voluptate velit esse cillum dolore fugiat nulla pariatur.
+                    </p>
+                </article>
+            </section>
+            <br />
+            <br />
+            <br />
+            <br />
+            <section id="COVIDSection">
+                <div class="mini_header">
+                    <h1 class="title"> COVID 19 Information</h1>
                 </div>
-            </nav>
-        </section>
+                <br />
+                <br />
+                <h3 style="text-align:center;"> The Governments current advice on coronavirus safety is:</h3>
+                <h3 style="text-align:center;">to stay at home</h3>
+            </section>
+            <section id="socialBar">
+                <nav class="secondary_header">
+                    <br />
+                    <br />
+                    <div class="icon_container" style="font-size:2em; text-align:center;">
+                        <a href="https://www.youtube.com/channel/UC8iN372lUS_vzyuOuUa9CGQ" rel="noopener noreferrer" target="_blank"><i class="fab fa-youtube-square fa-lg fa-fw" style="color:#FF0000;"></i></a>
+                        <a href="https://twitter.com/JR_Coding" rel="noopener noreferrer" target="_blank"><i class="fab fa-twitter-square fa-lg fa-fw" style="color:#1DA1F2;"></i></a>
+                        <a href="https://www.facebook.com/plymouthuni" rel="noopener noreferrer" target="_blank"><i class="fab fa-facebook-square fa-lg fa-fw" style="color: #3b5998"></i></a>
+                        <a href="mailto:jamesrudd@gmail.com"><i class="fas fa-envelope-square fa-lg fa-fw" style="color: darkslategrey"></i></a>
+                    </div>
+                    <br />
+                    <div class="copyright_container" style="text-align:center;">
+                        <p style="font-size: 20px;"> &copy; Designed by James Rudd - &trade; 2021. All rights reserved. </p>
+                    </div>
+                </nav>
+            </section>
+        </div>
     </div>
     <script>
         var slideIndex = 0;
@@ -287,19 +294,48 @@
     </script>
     <script>
         $(function () {
-            $('a[href*=#]:not([href=#])').click(function () {
-                if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') && location.hostname == this.hostname) {
-                    var target = $(this.hash);
-                    target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
-                    if (target.length) {
-                        $('html,body').animate({
-                            scrollTop: target.offset().top
-                        }, 1000);
-                        return false;
-                    }
-                }
-            });
+            $('a[href*="#"]').on('click', function (e) {
+                e.preventDefault()
+
+                $('html, body').animate(
+                    {
+                        scrollTop: $($(this).attr('href')).offset().top,
+                    },
+                    500,
+                    'linear'
+                )
+            })
+            //$('a[href*=#]:not([href=#])').click(function () {
+            //    if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') && location.hostname == this.hostname) {
+            //        var target = $(this.hash);
+            //        target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
+            //        if (target.length) {
+            //            $('html,body').animate({
+            //                scrollTop: target.offset().top
+            //            }, 1000);
+            //            return false;
+            //        }
+            //    }
+            //});
         });
+    </script>
+    <script>
+        $(function () {
+            $('button[href*="#"]').on('click', function (e) {
+                e.preventDefault();
+            })
+        });
+    </script>
+    <script>
+        var map;
+
+        function initMap() {
+            map = new google.maps.Map(document.getElementById("map"), {
+                center: { lat: 50.3742543, lng: -4.1349999 },
+                zoom: 18,
+            });
+            //ChIJ60vTYLTsbEgRx - rkJMvRJm0
+        }
     </script>    
 </body>
 </html>

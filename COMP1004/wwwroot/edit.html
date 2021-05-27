@@ -1,0 +1,77 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Single Page Application - James' Diner</title>
+    <link href="css/edit.css" rel="stylesheet" />
+    <script src="js/index.js"></script>
+
+</head>
+<body> 
+    <div id="page_container" style="width: 100%;height: 3000px;background-color: #0C141D">
+        <div class="sidenav">
+            <a href="#" id="bookings">Bookings</a>
+            <a href="#" id="edit">Edit Details</a>
+            <a href="#" id="covid"> Covid Reporting</a>
+            <a href="" id="logout">Logout</a>
+        </div>
+        <div class="content" style="margin-left: 180px;">        
+            <form>
+                <table class="editHours">
+                    <thead>
+                        <tr>
+                            <th>Day</th>
+                            <th>Opening Time</th>
+                            <th>Closing Time</th>
+                            <th><a href="#" onclick="changeHours()">Change All Details</a> </th>
+                        </tr>
+                    </thead>
+                    <tr>
+                        <th>Monday</th>
+                        <th contenteditable='true' id="mondayOpen">Enter Opening Time</th>
+                        <th contenteditable='true' id="mondayClose">Enter Closing Time</th>
+                        <th> <a href="#" onclick="changeMonday()">Change Monday</a></th>
+                    </tr>
+                    <tr>
+                        <th>Tuesday</th>
+                        <th contenteditable='true' id="tuesdayOpen">Enter Opening Time</th>
+                        <th contenteditable='true' id="tuesdayClose">Enter Closing Time</th>
+                        <th> <a href="#" onclick="changeTuesday()">Change Tuesday</a></th>
+                    </tr>
+                    <tr>
+                        <th>Wednesday</th>
+                        <th contenteditable='true' id="wednesdayOpen">Enter Opening Time</th>
+                        <th contenteditable='true' id="wednesdayClose">Enter Closing Time</th>
+                        <th> <a href="#" onclick="changeWednesday()">Change Wednesday</a></th>
+                    </tr>
+                    <tr>
+                        <th>Thursday</th>
+                        <th contenteditable='true' id="thursdayOpen">Enter Opening Time</th>
+                        <th contenteditable='true' id="thursdayClose">Enter Closing Time</th>
+                        <th> <a href="#" onclick="changeThursday()">Change Thursday</a></th>
+                    </tr>
+                    <tr>
+                        <th>Friday</th>
+                        <th contenteditable='true' id="fridayOpen">Enter Opening Time</th>
+                        <th contenteditable='true' id="fridayClose">Enter Closing Time</th>
+                        <th> <a href="#" onclick="changeFriday()">Change Friday</a></th>
+                    </tr>
+                    <tr>
+                        <th>Saturday</th>
+                        <th contenteditable='true' id="saturdayOpen">Enter Opening Time</th>
+                        <th contenteditable='true' id="saturdayClose">Enter Closing Time</th>
+                        <th> <a href="#" onclick="changeSaturday()">Change Saturday</a></th>
+                    </tr>
+                    <tr>
+                        <th>Sunday</th>
+                        <th contenteditable='true' id="sundayOpen">Enter Opening Time</th>
+                        <th contenteditable='true' id="sundayClose">Enter Closing Time</th>
+                        <th> <a href="#" onclick="changeSunday()">Change Sunday</a></th>
+                    </tr>
+                </table>   
+            </form>            
+        </div>
+    </div>
+</body>
+</html>

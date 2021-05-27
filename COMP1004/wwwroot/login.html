@@ -1,0 +1,43 @@
+﻿<!DOCTYPE html>
+<html>
+<head>    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Single Page Application - James' Diner</title>
+    <link href="css/admin.css" rel="stylesheet" />
+    <script src="js/index.js"></script>
+    <script>
+        //const btn = document.getElementById("loginBtn");
+        //btn.addEventListener("click", function (e) {
+        //    e.preventDefault();
+        //})
+    </script>
+</head>
+<body>
+    <div class="admin">
+        <div class="content">
+            <div class="login_div" style="text-align:center;">
+                <button class="originalbtn" onclick="document.getElementById('modalbox').style.display='block'">Login</button>
+
+                <div id="modalbox" class="modal">
+                    <span onclick="document.getElementById('modalbox').style.display='none'" class="close" title="Close Modal">&times;</span>
+
+                    <form id="modal-content animate" method="post"
+                          style="display:inline-block; text-align:center; background-color:white; width:20%;">
+                        <div class="tab">
+                            <p><input id="login" type="email" placeholder="Email..." required name="email" /></p>
+                            <p><input id="password" type="password" placeholder="Password..." required name="pword" /></p>
+                        </div>
+
+                        <button onclick="userLogin()" href="#" id="loginBtn" class="login-btn">Login</button>
+                        <div class="tab" style="background-color:#F1F1F1">
+                            <button type="button" onclick="document.getElementById('modalbox').style.display='none'" class="cancelbtn">Cancel</button>]
+                            <span class="psw" style="color:black"> Forgot <a href="#">password</a></span>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>        
+    </div>
+</body>
+</html>

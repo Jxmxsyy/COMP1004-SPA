@@ -1,0 +1,83 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Single Page Application - James' Diner</title>
+    <link href="css/bookings.css" rel="stylesheet" />
+    <script src="js/index.js"></script>
+    <style>
+        table, td, th {
+            border: 1px solid black;
+            text-align: center;
+        }
+
+        tr {
+            background-color: white;
+        }
+    </style>
+</head>
+<body>
+    <div id="page_container" style="width: 100%;height: 3000px;background-color: #0C141D">
+        <div class="sidenav">
+            <a href="#" id="bookings">Bookings</a>            
+            <a href="#" id="edit">Edit Details</a>
+            <a href="#" id="covid"> Covid Reporting</a>
+            <a href="" id="logout">Logout</a>
+        </div>
+        <div class="content">
+            <form>
+                <div class="tab">
+                    <input id="SurnameInput" type="text" placeholder="Surname" required />
+                    <span class="error" aria-live="polite"></span>
+                </div>
+                <div class="tab">
+                    <input id="DateOfVisitInput" type="date" placeholder="Booking Date" required />
+                    <span class="error" aria-live="polite"></span>
+                </div>
+                <div class="tab">
+                    <input id="TimeOfVisitInput" type="time" placeholder="Booking Time" required />
+                    <span class="error" aria-live="polite"></span>
+                </div>
+                <button href="#" onclick="covid()"> Submit Details </button>
+            </form>
+            <table id="detailsTable" style="width: 100%;">
+                <thead>
+                    <tr>
+                        <th>
+                            First Name
+                        </th>
+                        <th>
+                            Last Name
+                        </th>
+                        <th>
+                            Email
+                        </th>
+                        <th>
+                            Phone Number
+                        </th>
+                        <th>
+                            Party Size
+                        </th>
+                        <th>
+                            Booking Date
+                        </th>
+                        <th>
+                            Booking Time
+                        </th>
+                    </tr>
+                </thead>
+                <tbody id="detailsTableBody">
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>
+<script>
+    $(function () {
+        $('button[href*="#"]').on('click', function (e) {
+            e.preventDefault();
+        })
+    });
+</script>
